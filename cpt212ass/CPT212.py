@@ -450,29 +450,34 @@ class Graph:
     # A utility function to print the constructed MST stored in parent[]
     def printMST(self):
 
-        selected_node = [0, 0, 0, 0, 0]
-        no_edge = 0
+        prev = {}  # List to store precedent vertex
+        shortestDistance = {}  # Record the weight
+        graphlist = self.adjList.copy()
+        path = []  # Find optimal node
 
-        selected_node[0] = True
+        for node in graphlist:
+            shortestDistance[node] = float('inf')
+        shortestDistance[] = 0
 
         # printing for edge and weight
         print("Edge : Weight\n")
         while (no_edge < self.V - 1):
-            
-            minimum = float('inf')
-            a = 0
-            b = 0
-            for m in range(self.V):
-                if selected_node[m]:
-                    for n in range(self.V):
-                        if ((not selected_node[n]) and G[m][n]):  
-                            # not in selected and there is an edge
-                            if minimum > [m][n]:
-                                minimum = G[m][n]
-                                a = m
-                                b = n
-            print(str(a) + "-" + str(b) + ":" + str(G[a][b]))
-            selected_node[b] = True
+            min_dis = None
+            for node in graphlist:
+                if min_dis is None:
+                    min_dis = node
+                elif shortestDistance[node] < shortestDistance[min_dis]:
+                    min_dis = node
+
+            path_option = self.adjList[min_dis].items()
+
+            for data, dis in path_option:
+
+                if dis + shortestDistance[min_dis] < shortestDistance[data]:
+                    shortestDistance[data] = dis + shortestDistance[min_dis]
+                    prev[data] = min_dis
+
+            graphlist.pop(min_dis)
             no_edge += 1
 
 # Function to clear screen
