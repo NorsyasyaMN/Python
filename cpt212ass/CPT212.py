@@ -25,12 +25,7 @@ class Graph:
         self.adjList['HA']['CA'] = 7624
         self.adjList['DU']['CA'] = 6072
         self.adjList['DU']['TO'] = 7933
-       #self.adjList['BDX']['MB'] = 7240
-        #self.adjList['KL']['MVD'] = 15812
-        #self.adjList['BDX']['GLA'] = 1254
-        #self.adjList['KL']['MB'] = 3599
-        #self.adjList['GLA']['MVD'] = 111225
-
+       
 
     # Initial edge list
     def initial_edgelist(self, graph):
