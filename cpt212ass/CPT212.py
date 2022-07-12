@@ -3,6 +3,8 @@ import random as rd
 from os import system, name
 from turtle import distance
 import sys # Library for INT_MAX
+from collections import defaultdict
+
 # remove later just for troubleshooting purposes
 
 # Class to represent graph and all the functions
@@ -207,7 +209,7 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-        print(self.adjList["GLA"].items())
+        print(self.adjList["SE4"].items())
         print(len(self.adjList))
     
     def is_path(t, path):
@@ -441,7 +443,7 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
-
+    
     def PrimMST(self):
         # Get the number of vertices in graph
         V = self.V
@@ -497,7 +499,7 @@ class Graph:
                     # update distance value in min heap also
                     minHeap.decreaseKey(v, key[v])
  
-        printArr(parent, V)
+        printArr(parent, V)  
 
 # Function to clear screen
 def cls_screen():
@@ -587,7 +589,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-                #g.shortestPath()
+                g.PrimMST()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
