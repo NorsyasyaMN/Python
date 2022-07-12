@@ -442,38 +442,62 @@ class Graph:
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
 
-    # A utility function to print the constructed MST stored in parent[]
-    def printMST(self):
-
-        prev = {}  # List to store precedent vertex
-        shortestDistance = {}  # Record the weight
-        graphlist = self.adjList.copy()
-        path = []  # Find optimal node
-
-        for node in graphlist:
-            shortestDistance[node] = float('inf')
-        shortestDistance[] = 0
-
-        # printing for edge and weight
-        print("Edge : Weight\n")
-        while (no_edge < self.V - 1):
-            min_dis = None
-            for node in graphlist:
-                if min_dis is None:
-                    min_dis = node
-                elif shortestDistance[node] < shortestDistance[min_dis]:
-                    min_dis = node
-
-            path_option = self.adjList[min_dis].items()
-
-            for data, dis in path_option:
-
-                if dis + shortestDistance[min_dis] < shortestDistance[data]:
-                    shortestDistance[data] = dis + shortestDistance[min_dis]
-                    prev[data] = min_dis
-
-            graphlist.pop(min_dis)
-            no_edge += 1
+    def PrimMST(self):
+        # Get the number of vertices in graph
+        V = self.V
+ 
+        # key values used to pick minimum weight edge in cut
+        key = []
+ 
+        # List to store constructed MST
+        parent = []
+ 
+        # minHeap represents set E
+        minHeap = Heap()
+ 
+        # Initialize min heap with all vertices. Key values of all
+        # vertices (except the 0th vertex) is is initially infinite
+        for v in range(V):
+            parent.append(-1)
+            key.append(1e7)
+            minHeap.array.append(minHeap.newMinHeapNode(v, key[v]))
+            minHeap.pos.append(v)
+ 
+        # Make key value of 0th vertex as 0 so
+        # that it is extracted first
+        minHeap.pos[0] = 0
+        key[0] = 0
+        minHeap.decreaseKey(0, key[0])
+ 
+        # Initially size of min heap is equal to V
+        minHeap.size = V
+ 
+        # In the following loop, min heap contains all nodes
+        # not yet added in the MST.
+        while minHeap.isEmpty() == False:
+ 
+            # Extract the vertex with minimum distance value
+            newHeapNode = minHeap.extractMin()
+            u = newHeapNode[0]
+ 
+            # Traverse through all adjacent vertices of u
+            # (the extracted vertex) and update their
+            # distance values
+            for pCrawl in self.graph[u]:
+ 
+                v = pCrawl[0]
+ 
+                # If shortest distance to v is not finalized
+                # yet, and distance to v through u is less than
+                # its previously calculated distance
+                if minHeap.isInMinHeap(v) and pCrawl[1] < key[v]:
+                    key[v] = pCrawl[1]
+                    parent[v] = u
+ 
+                    # update distance value in min heap also
+                    minHeap.decreaseKey(v, key[v])
+ 
+        printArr(parent, V)
 
 # Function to clear screen
 def cls_screen():
@@ -529,7 +553,7 @@ def AWAIT_TRIGGER():
 
 def main():
 
-    g = Graph()  # Create a graph
+    g = Graph(5)  # Create a graph
     print()
     city_name()
     print()
