@@ -153,21 +153,21 @@ class Graph:
             if dest == 'SE':
                 weight = 6780
             elif dest == 'TO':
-                weight = 10722
-            elif dest == 'MB':
-                weight = 3599
-            elif dest == 'MVD':
-                weight = 15812
+                weight = 7933
+            elif dest == 'HA':
+                weight = 12961
+            elif dest == 'CA':
+                weight = 6072
 
-        elif source == 'MVD':
-            if dest == 'GLA':
-                weight = 11225
-            elif dest == 'BDX':
-                weight = 10486
-            elif dest == 'KL':
-                weight = 15812
-            elif dest == 'MB':
-                weight = 14721
+        elif source == 'CA':
+            if dest == 'SE':
+                weight = 10814
+            elif dest == 'TO':
+                weight = 11597
+            elif dest == 'HA':
+                weight = 7252
+            elif dest == 'DU':
+                weight = 6072
 
         return weight
 
