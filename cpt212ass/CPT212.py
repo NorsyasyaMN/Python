@@ -529,7 +529,7 @@ def AWAIT_TRIGGER():
 
 def main():
 
-    g = Graph(5)  # Create a graph
+    g = Graph()  # Create a graph
     print()
     city_name()
     print()
