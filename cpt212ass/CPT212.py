@@ -14,23 +14,18 @@ class Graph:
         self.V = vertex
         self.exist = False
         self.edgeList = []  # List to store all edges in the graph
-        self.Node = ["GLA", "BDX", "MB", "KL", "MVD"]  # Store all vertices in a list
+        self.Node = ["SE", "TO", "HA", "DU", "CA"]  # Store all vertices in a list
         self.adjList = {}  # Dictionary to represent adjacency list
 
         for node in self.Node:
             self.adjList[node] = {}  # Create dictionary for each vertex
 
-        self.adjList['GLA']['BDX'] = 1254  # Default graph
-        self.adjList['MB']['BDX'] = 7240
-        self.adjList['MB']['KL'] = 3599
-        self.adjList['MVD']['GLA'] = 11225
-        self.adjList['MVD']['KL'] = 15812
-        self.adjList['BDX']['MB'] = 7240
-        self.adjList['KL']['MVD'] = 15812
-        self.adjList['BDX']['GLA'] = 1254
-        self.adjList['KL']['MB'] = 3599
-        self.adjList['GLA']['MVD'] = 111225
-
+        self.adjList['SE']['TO'] = 1156  # Default graph
+        self.adjList['SE']['HA'] = 10915
+        self.adjList['HA']['CA'] = 7624
+        self.adjList['DU']['CA'] = 6072
+        self.adjList['DU']['TO'] = 7933
+       
 
     # Initial edge list
     def initial_edgelist(self, graph):
@@ -99,7 +94,7 @@ class Graph:
         # Check if edge exist in the graph
         while self.exist:
 
-            citylist = ["GLA", "BDX", "MB", "KL", "MVD"]  # List of all cities
+            citylist = ["SE", "TO", "HA", "DU", "CA"]  # List of all cities
             source = rd.choice(citylist)  # Random get one city as source city
             citylist.remove(source)  # Random get one city as destination from rest of the city
             dest = rd.choice(citylist)  # to prevent self loop
@@ -124,14 +119,14 @@ class Graph:
 
         weight = None
 
-        if source == 'GLA':
-            if dest == 'MVD':
-                weight = 11225
-            elif dest == 'MB':
-                weight = 7471
-            elif dest == 'KL':
+        if source == 'SE':
+            if dest == 'TO':
+                weight = 1156
+            elif dest == 'HA':
+                weight = 10915
+            elif dest == 'DU':
                 weight = 10701
-            elif dest == 'BDX':
+            elif dest == 'CA':
                 weight = 1254
 
         elif source == 'BDX':
