@@ -528,22 +528,23 @@ def print_menu():
     print("=  1. Graph Connectivity                                =")
     print("=  2. Cycle Detection                                   =")
     print("=  3. Shortest Path                                     =")
-    print("=  4. Reset The Graph to Default                        =")
-    print("=  5. Add an Edge                                       =")
-    print("=  6. Remove an Edge                                    =")
-    print("=  7. View Graph Adjacency List                         =")
-    print("=  8. Minimum Spanning Tree                             =")
-    print("=  9. Exit/Quit                                         =")
+    print("=  4. Minimum Spanning Tree                             =")
+    print("=  5. Reset The Graph to Default                        =")
+    print("=  6. Add an Edge                                       =")
+    print("=  7. Remove an Edge                                    =")
+    print("=  8. View Graph Adjacency List                         =")
+    print("=  9. Minimum Spanning Tree                             =")
+    print("=  10. Exit/Quit                                         =")
     print("=========================================================")
 
 
 def city_name():
     # Label all cities short form
-    print("* GLA : Glasgow, United Kingdom *")
-    print("* BDX : Bordeaux, France        *")
-    print("* MB : Mumbai, India            *")
-    print("* KL : Kuala Lumpur, Malaysia   *")
-    print("* MVD : Montevideo, Uruguay     *")
+    print("* SE : Seoul, South Korea *")
+    print("* TO : Tokyo, Japan        *")
+    print("* HA : Havana, Cuba            *")
+    print("* DU : Dubai, UAE   *")
+    print("* CA : Casablanca, Morocco     *")
 
 
 def AWAIT_TRIGGER():
@@ -586,21 +587,26 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-                g.reset_graph()
+                #g.shortestPath()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
             elif choice == 5:
-                g.add_edge_manual()
+                g.reset_graph()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
             elif choice == 6:
-                g.remove_edge()
+                g.add_edge_manual()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
             elif choice == 7:
+                g.remove_edge()
+                AWAIT_TRIGGER()
+                cls_screen()
+                break
+            elif choice == 8:
                 city_name()
                 print()
                 print("Adjacency List of the graph:")
@@ -608,12 +614,12 @@ def main():
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
-            elif choice == 8:
+            elif choice == 9:
                 g.primMST()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
-            elif choice == 9:
+            elif choice == 10:
                 print("EXITING PROCESSES....\n")
                 exit()
 
