@@ -2,7 +2,7 @@ from pydoc import ispath
 import random as rd
 from os import system, name
 from turtle import distance
-import sys # Library for INT_MAX
+import sys # Library for INT_M5AX
 
 # remove later just for troubleshooting purposes
 
@@ -443,9 +443,8 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
-<<<<<<< HEAD
     
-    """ def PrimMST(self):
+     def PrimMST(self):
         # Get the number of vertices in graph
         V = self.V
  
@@ -500,61 +499,8 @@ class Graph:
                     # update distance value in min heap also
                     minHeap.decreaseKey(v, key[v])
  
-        printArr(parent, V)  """
+        printArr(parent, V)
 
-=======
-    #Function to find path
-    def PrimMST(self):
-
-        key = []
-        weight = []
-        len = 0
-        src = "SE"
-        
-        path_option = self.adjList[src].items()
-        key.append(src)
-
-        for node, distance in path_option:
-            data1 = 1157
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[1]
-        self.add_edge(next, 'DU', 7933)
-        self.add_edge(next, 'HA', 12126)
-        for node, distance in self.adjList[next].items():
-            data1 = 12126
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[2]
-        for node, distance in self.adjList[next].items():
-            data1 = 7933
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[3]
-        self.add_edge(next, 'SE', 10814)
-        self.add_edge(next, 'HA', 7252)
-        for node, distance in self.adjList[next].items():
-            data1 = 10814
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        print("Minimum Spanning Tree: \n")
-        for x in key:
-            print(x)
-        for x in weight:
-            len += x
-        print("Total length is ", len)
-
-
-
->>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
 # Function to clear screen
 def cls_screen():
 
