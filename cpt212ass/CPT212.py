@@ -444,7 +444,7 @@ class Graph:
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
     
-     def PrimMST(self):
+    """ def PrimMST(self):
         # Get the number of vertices in graph
         V = self.V
  
@@ -499,7 +499,7 @@ class Graph:
                     # update distance value in min heap also
                     minHeap.decreaseKey(v, key[v])
  
-        printArr(parent, V)
+        printArr(parent, V)"""
 
 # Function to clear screen
 def cls_screen():
