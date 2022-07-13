@@ -210,11 +210,6 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-        path = self.adjList['TO'].items()
-        for n, data in path:
-            print(n, " ", data, "\n")
-
-
 
        # print(len(self.adjList))
     
@@ -443,14 +438,7 @@ class Graph:
         key = []
         weight = []
         len = 0
-
-        print("Enter start and destination city from the list below:")
-        print(list(self.adjList))
-        src = input("Please enter start city: ")
-
-        while src not in self.adjList.keys():
-            print(src + " is not in the graph! Enter again!\n")
-            src = input("Please enter start city: ")
+        src = "SE"
         
         path_option = self.adjList[src].items()
         key.append(src)
