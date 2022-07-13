@@ -209,13 +209,8 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-<<<<<<< HEAD
         print(self.adjList["SE"].items())
         print(len(self.adjList))
-=======
-
-       # print(len(self.adjList))
->>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
     
     def is_path(t, path):
         if t.head != path[0]:
