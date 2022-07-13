@@ -209,7 +209,7 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-        print(self.adjList["SE4"].items())
+        print(self.adjList["SE"].items())
         print(len(self.adjList))
     
     def is_path(t, path):
@@ -444,7 +444,7 @@ class Graph:
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
     
-    def PrimMST(self):
+    """ def PrimMST(self):
         # Get the number of vertices in graph
         V = self.V
  
@@ -499,7 +499,7 @@ class Graph:
                     # update distance value in min heap also
                     minHeap.decreaseKey(v, key[v])
  
-        printArr(parent, V)  
+        printArr(parent, V)  """
 
 # Function to clear screen
 def cls_screen():
@@ -535,8 +535,7 @@ def print_menu():
     print("=  6. Add an Edge                                       =")
     print("=  7. Remove an Edge                                    =")
     print("=  8. View Graph Adjacency List                         =")
-    print("=  9. Minimum Spanning Tree                             =")
-    print("=  10. Exit/Quit                                         =")
+    print("=  9. Exit/Quit                                        =")
     print("=========================================================")
 
 
@@ -589,7 +588,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-                g.PrimMST()
+               # g.PrimMST()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
@@ -616,12 +615,12 @@ def main():
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
-            elif choice == 9:
+           """ elif choice == 9:
                 g.primMST()
                 AWAIT_TRIGGER()
                 cls_screen()
-                break
-            elif choice == 10:
+                break"""
+            elif choice == 9:
                 print("EXITING PROCESSES....\n")
                 exit()
 
