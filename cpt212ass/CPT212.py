@@ -210,8 +210,8 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-        print(self.adjList["SE"].items())
-        print(len(self.adjList))
+       # print(self.adjList["SE"].items())
+       # print(len(self.adjList))
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -219,18 +219,6 @@ class Graph:
         if t.head == path[0] and len(path) == 1:
             return True
         return any(ispath(i, path[1:]) for i in t.children)
-    
-    def convert(self, V):
- 
-        # Initialize a matrix
-        matrix = [[0 for j in range(V)]
-                    for i in range(V)]
-        
-        for i in self.adjList:
-            for j in self.adjList[i]:
-                matrix[i][j] = 1
-        
-        return matrix
 
     """-----------------Function 1: Strongly connectivity--------------"""
 
@@ -447,12 +435,12 @@ class Graph:
 
     # Dijkstra algorithm to find shortest path
     def dijkstra(self, src, end):
-        for node in self.adjList:
-            if node == end:
-                if node not in self.adjList[src].items():
-                    self.add_newRandomEdge()
-            else:
-                break
+        path_option = self.adjList[src].items()
+
+        for data, distance in path_option:
+            if self.adjList[data]
+                
+
             
 # Function to clear screen
 def cls_screen():
