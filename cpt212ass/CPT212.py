@@ -209,13 +209,8 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-<<<<<<< HEAD
         print(self.adjList["SE"].items())
         print(len(self.adjList))
-=======
-
-       # print(len(self.adjList))
->>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -302,6 +297,7 @@ class Graph:
             elif tracker[self.Node.index(neighbour)]:
                 path.append(neighbour)
                 return True
+        #azrinnnnn
 
         # pop the node after the end of recursion
         tracker[self.Node.index(node)] = False
@@ -448,7 +444,6 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
-<<<<<<< HEAD
     
     """ def PrimMST(self):
         # Get the number of vertices in graph
@@ -507,7 +502,6 @@ class Graph:
  
         printArr(parent, V)  """
 
-=======
     #Function to find path
     def PrimMST(self):
 
@@ -559,7 +553,6 @@ class Graph:
 
 
 
->>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
 # Function to clear screen
 def cls_screen():
 
