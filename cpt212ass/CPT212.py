@@ -3,7 +3,6 @@ import random as rd
 from os import system, name
 from turtle import distance
 import sys # Library for INT_MAX
-from collections import defaultdict
 
 # remove later just for troubleshooting purposes
 
@@ -615,11 +614,6 @@ def main():
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
-           """ elif choice == 9:
-                g.primMST()
-                AWAIT_TRIGGER()
-                cls_screen()
-                break"""
             elif choice == 9:
                 print("EXITING PROCESSES....\n")
                 exit()
