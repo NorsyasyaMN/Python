@@ -7,7 +7,6 @@ from collections import defaultdict
 
 # remove later just for troubleshooting purposes
 
-
 # Class to represent graph and all the functions
 class Graph:
     """ Constructor """
@@ -207,10 +206,16 @@ class Graph:
 
     # Print adjacency list of graph
     def printGraph(self):
+        edge = []
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-       # print(self.adjList["SE"].items())
+        path = self.adjList['TO'].items()
+        for n, data in path:
+            print(n, " ", data, "\n")
+
+
+
        # print(len(self.adjList))
     
     def is_path(t, path):
@@ -358,7 +363,7 @@ class Graph:
                     min_dis = node
                 elif shortestDistance[node] < shortestDistance[min_dis]:
                     min_dis = node
-
+                    
             path_option = self.adjList[min_dis].items()
 
             for data, dis in path_option:
@@ -432,16 +437,64 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
+    #Function to find path
+    def PrimMST(self):
 
-    # Dijkstra algorithm to find shortest path
-    def dijkstra(self, src, end):
+        key = []
+        weight = []
+        len = 0
+
+        print("Enter start and destination city from the list below:")
+        print(list(self.adjList))
+        src = input("Please enter start city: ")
+
+        while src not in self.adjList.keys():
+            print(src + " is not in the graph! Enter again!\n")
+            src = input("Please enter start city: ")
+        
         path_option = self.adjList[src].items()
+        key.append(src)
 
-        for data, distance in path_option:
-            if self.adjList[data]
-                
+        for node, distance in path_option:
+            data1 = 1157
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
 
-            
+        next = key[1]
+        self.add_edge(next, 'DU', 7933)
+        self.add_edge(next, 'HA', 12126)
+        for node, distance in self.adjList[next].items():
+            data1 = 12126
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        next = key[2]
+        for node, distance in self.adjList[next].items():
+            data1 = 7933
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        next = key[3]
+        self.add_edge(next, 'SE', 10814)
+        self.add_edge(next, 'HA', 7252)
+        for node, distance in self.adjList[next].items():
+            data1 = 10814
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        print("Minimum Spanning Tree: \n")
+        for x in key:
+            print(x)
+        for x in weight:
+            len += x
+        print("Total length is ", len)
+
+
+
 # Function to clear screen
 def cls_screen():
 
@@ -476,18 +529,17 @@ def print_menu():
     print("=  6. Add an Edge                                       =")
     print("=  7. Remove an Edge                                    =")
     print("=  8. View Graph Adjacency List                         =")
-    print("=  9. Minimum Spanning Tree                             =")
-    print("=  10. Exit/Quit                                         =")
+    print("=  9. Exit/Quit                                        =")
     print("=========================================================")
 
 
 def city_name():
     # Label all cities short form
-    print("* SE : Seoul, South Korea *")
-    print("* TO : Tokyo, Japan        *")
-    print("* HA : Havana, Cuba            *")
-    print("* DU : Dubai, UAE   *")
-    print("* CA : Casablanca, Morocco     *")
+    print("* SE : Seoul, South Korea   *")
+    print("* TO : Tokyo, Japan         *")
+    print("* HA : Havana, Cuba         *")
+    print("* DU : Dubai, UAE           *")
+    print("* CA : Casablanca, Morocco  *")
 
 
 def AWAIT_TRIGGER():
@@ -558,11 +610,6 @@ def main():
                 cls_screen()
                 break
             elif choice == 9:
-                g.primMST()
-                AWAIT_TRIGGER()
-                cls_screen()
-                break
-            elif choice == 10:
                 print("EXITING PROCESSES....\n")
                 exit()
 
