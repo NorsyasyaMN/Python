@@ -205,11 +205,17 @@ class Graph:
 
     # Print adjacency list of graph
     def printGraph(self):
+        edge = []
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
+<<<<<<< HEAD
         print(self.adjList["SE"].items())
         print(len(self.adjList))
+=======
+
+       # print(len(self.adjList))
+>>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -368,7 +374,7 @@ class Graph:
                     min_dis = node
                 elif shortestDistance[node] < shortestDistance[min_dis]:
                     min_dis = node
-
+                    
             path_option = self.adjList[min_dis].items()
 
             for data, dis in path_option:
@@ -442,6 +448,7 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
+<<<<<<< HEAD
     
     """ def PrimMST(self):
         # Get the number of vertices in graph
@@ -500,6 +507,59 @@ class Graph:
  
         printArr(parent, V)  """
 
+=======
+    #Function to find path
+    def PrimMST(self):
+
+        key = []
+        weight = []
+        len = 0
+        src = "SE"
+        
+        path_option = self.adjList[src].items()
+        key.append(src)
+
+        for node, distance in path_option:
+            data1 = 1157
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        next = key[1]
+        self.add_edge(next, 'DU', 7933)
+        self.add_edge(next, 'HA', 12126)
+        for node, distance in self.adjList[next].items():
+            data1 = 12126
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        next = key[2]
+        for node, distance in self.adjList[next].items():
+            data1 = 7933
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        next = key[3]
+        self.add_edge(next, 'SE', 10814)
+        self.add_edge(next, 'HA', 7252)
+        for node, distance in self.adjList[next].items():
+            data1 = 10814
+            if distance < data1:
+                key.append(node)
+                weight.append(distance)
+
+        print("Minimum Spanning Tree: \n")
+        for x in key:
+            print(x)
+        for x in weight:
+            len += x
+        print("Total length is ", len)
+
+
+
+>>>>>>> f59b6b17430f1b3308b6c757a6aec90bd18fa9f0
 # Function to clear screen
 def cls_screen():
 
@@ -540,11 +600,11 @@ def print_menu():
 
 def city_name():
     # Label all cities short form
-    print("* SE : Seoul, South Korea *")
-    print("* TO : Tokyo, Japan        *")
-    print("* HA : Havana, Cuba            *")
-    print("* DU : Dubai, UAE   *")
-    print("* CA : Casablanca, Morocco     *")
+    print("* SE : Seoul, South Korea   *")
+    print("* TO : Tokyo, Japan         *")
+    print("* HA : Havana, Cuba         *")
+    print("* DU : Dubai, UAE           *")
+    print("* CA : Casablanca, Morocco  *")
 
 
 def AWAIT_TRIGGER():
