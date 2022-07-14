@@ -3,7 +3,6 @@ import random as rd
 from os import system, name
 from turtle import distance
 import sys # Library for INT_MAX
-from collections import defaultdict
 
 # remove later just for troubleshooting purposes
 
@@ -216,6 +215,18 @@ class Graph:
         if t.head == path[0] and len(path) == 1:
             return True
         return any(ispath(i, path[1:]) for i in t.children)
+    
+    def convert(self, V):
+ 
+        # Initialize a matrix
+        matrix = [[0 for j in range(V)]
+                    for i in range(V)]
+        
+        for i in self.adjList:
+            for j in self.adjList[i]:
+                matrix[i][j] = 1
+        
+        return matrix
 
     """-----------------Function 1: Strongly connectivity--------------"""
 
@@ -283,6 +294,7 @@ class Graph:
             elif tracker[self.Node.index(neighbour)]:
                 path.append(neighbour)
                 return True
+        
 
         # pop the node after the end of recursion
         tracker[self.Node.index(node)] = False
@@ -570,7 +582,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-                g.PrimMST()
+               # g.PrimMST()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
