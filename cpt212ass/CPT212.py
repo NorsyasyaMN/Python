@@ -245,8 +245,6 @@ class Graph:
         print("Minimum Spanning Tree of the existing graph: ")
         for s, d, w in self.MST:
             print("%s -> %s: %s" % (s, d, w))
-        for s, d, w in self.MST:
-            len += w
         print("Total weight: ", len)
     
     def is_path(t, path):
