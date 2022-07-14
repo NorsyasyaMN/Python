@@ -36,9 +36,8 @@ class DisjointSet:
 class Graph:
     """ Constructor """
 
-    def __init__(self, vertices):
+    def __init__(self):
 
-        self.V = vertices
         self.exist = False
         self.edgeList = []  # List to store all edges in the graph
         self.Node = ["SE", "TO", "HA", "DU", "CA"]  # Store all vertices in a list
@@ -236,15 +235,19 @@ class Graph:
 
     # Print adjacency list of graph
     def printGraph(self):
-        edge = []
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
 
-    # Print solution
+    # Print solution Minimum Spanning Tree
     def printSolution(self,s,d,w):
+        len = 0
+        print("Minimum Spanning Tree of the existing graph: ")
         for s, d, w in self.MST:
-            print("%s - %s: %s" % (s, d, w))
+            print("%s -> %s: %s" % (s, d, w))
+        for s, d, w in self.MST:
+            len += w
+        print("Total weight: ", len)
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -468,10 +471,11 @@ class Graph:
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
         
     def kruskalAlgo(self):
+        V = 5 # Number of vertices
         i, e = 0, 0
         ds = DisjointSet(self.Node)
         self.tree = sorted(self.tree, key=lambda item: item[2])
-        while e < self.V - 1:
+        while e < V - 1:
             s, d, w = self.tree[i]
             i += 1
             x = ds.find(s)
@@ -538,7 +542,7 @@ def AWAIT_TRIGGER():
 
 def main():
 
-    g = Graph(5)  # Create a graph
+    g = Graph()  # Create a graph
     g.addEdge("SE", "TO", 1156)
     g.addEdge("SE", "HA", 10915)
     g.addEdge("HA", "CA", 7624)
