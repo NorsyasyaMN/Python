@@ -40,7 +40,6 @@ class Graph:
     def add_edge(self, src, destination, distance):
 
         self.adjList[src][destination] = distance
-        self.adjList[destination][src] = distance
 
     # Function to add edge manually by user
     def add_edge_manual(self):
@@ -210,8 +209,6 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-
-       # print(len(self.adjList))
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -432,6 +429,7 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
+
     #Function to find path
     def PrimMST(self):
 
@@ -450,6 +448,7 @@ class Graph:
                 weight.append(distance)
 
         next = key[1]
+        # Add edges if not exist
         self.add_edge(next, 'DU', 7933)
         self.add_edge(next, 'HA', 12126)
         for node, distance in self.adjList[next].items():
@@ -466,6 +465,7 @@ class Graph:
                 weight.append(distance)
 
         next = key[3]
+        # Add edges if not exist
         self.add_edge(next, 'SE', 10814)
         self.add_edge(next, 'HA', 7252)
         for node, distance in self.adjList[next].items():
