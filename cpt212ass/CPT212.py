@@ -6,17 +6,45 @@ import sys # Library for INT_MAX
 
 # remove later just for troubleshooting purposes
 
+#Implementing Disjoint Set data structure and its functions
+class DisjointSet:
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.parent = {}
+        for v in vertices:
+            self.parent[v] = v
+        self.rank = dict.fromkeys(vertices, 0)
+    
+    def find(self, item):
+        if self.parent[item] == item:
+            return item
+        else:
+            return self.find(self.parent[item])
+    
+    def union(self, x, y):
+        xroot = self.find(x)
+        yroot = self.find(y)
+        if self.rank[xroot] < self.rank[yroot]:
+            self.parent[xroot] = yroot
+        elif self.rank[xroot] > self.rank[yroot]:
+            self.parent[yroot] = xroot
+        else:
+            self.parent[yroot] = xroot
+            self.rank[xroot] += 1
+
 # Class to represent graph and all the functions
 class Graph:
     """ Constructor """
 
-    def __init__(self, vertex):
+    def __init__(self, vertices):
 
-        self.V = vertex
+        self.V = vertices
         self.exist = False
         self.edgeList = []  # List to store all edges in the graph
         self.Node = ["SE", "TO", "HA", "DU", "CA"]  # Store all vertices in a list
         self.adjList = {}  # Dictionary to represent adjacency list
+        self.MST = []
+        self.tree = []
 
         for node in self.Node:
             self.adjList[node] = {}  # Create dictionary for each vertex
@@ -37,8 +65,10 @@ class Graph:
 
     # Function to add edge
     def add_edge(self, src, destination, distance):
-
         self.adjList[src][destination] = distance
+
+    def addEdge(self, s, d, w):
+        self.tree.append([s, d, w])
 
     # Function to add edge manually by user
     def add_edge_manual(self):
@@ -84,6 +114,7 @@ class Graph:
         weight = self.edge_weight(src, dest)
 
         self.add_edge(src, dest, weight)
+        self.addEdge(src, dest, weight)
         print("Edge", src, "to", dest, "with distance", weight, "is added into the graph!\n2")
 
     # Function to add random edge
@@ -111,6 +142,7 @@ class Graph:
         weight = self.edge_weight(source, dest)
 
         self.add_edge(source, dest, weight)  # Add to adjacency list
+        self.addEdge(source, dest, weight)
         # Print result
         print("Edge", source, "to", dest, "with distance", weight, "is added into the graph!\n")
 
@@ -208,6 +240,11 @@ class Graph:
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
+
+    # Print solution
+    def printSolution(self,s,d,w):
+        for s, d, w in self.MST:
+            print("%s - %s: %s" % (s, d, w))
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -429,58 +466,22 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
-
-    #Function to find path
-    def PrimMST(self):
-
-        key = []
-        weight = []
-        len = 0
-        src = "SE"
         
-        path_option = self.adjList[src].items()
-        key.append(src)
-
-        for node, distance in path_option:
-            data1 = 1157
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[1]
-        # Add edges if not exist
-        self.add_edge(next, 'DU', 7933)
-        self.add_edge(next, 'HA', 12126)
-        for node, distance in self.adjList[next].items():
-            data1 = 12126
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[2]
-        for node, distance in self.adjList[next].items():
-            data1 = 7933
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        next = key[3]
-        # Add edges if not exist
-        self.add_edge(next, 'SE', 10814)
-        self.add_edge(next, 'HA', 7252)
-        for node, distance in self.adjList[next].items():
-            data1 = 10814
-            if distance < data1:
-                key.append(node)
-                weight.append(distance)
-
-        print("Minimum Spanning Tree: \n")
-        for x in key:
-            print(x)
-        for x in weight:
-            len += x
-        print("Total length is ", len)
-
+    def kruskalAlgo(self):
+        i, e = 0, 0
+        ds = DisjointSet(self.Node)
+        self.tree = sorted(self.tree, key=lambda item: item[2])
+        while e < self.V - 1:
+            s, d, w = self.tree[i]
+            i += 1
+            x = ds.find(s)
+            y = ds.find(d)
+            if x != y:
+                e += 1
+                self.MST.append([s,d,w])
+                ds.union(x,y)
+        self.printSolution(s,d,w)
+    
 
 
 # Function to clear screen
@@ -517,7 +518,7 @@ def print_menu():
     print("=  6. Add an Edge                                       =")
     print("=  7. Remove an Edge                                    =")
     print("=  8. View Graph Adjacency List                         =")
-    print("=  9. Exit/Quit                                        =")
+    print("=  9. Exit/Quit                                         =")
     print("=========================================================")
 
 
@@ -538,6 +539,12 @@ def AWAIT_TRIGGER():
 def main():
 
     g = Graph(5)  # Create a graph
+    g.addEdge("SE", "TO", 1156)
+    g.addEdge("SE", "HA", 10915)
+    g.addEdge("HA", "CA", 7624)
+    g.addEdge("DU", "CA", 6072)
+    g.addEdge("DU", "TO", 7933)
+
     print()
     city_name()
     print()
@@ -570,7 +577,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-                g.PrimMST()
+                g.kruskalAlgo()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
