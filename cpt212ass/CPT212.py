@@ -582,7 +582,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-               # g.PrimMST()
+                g.PrimMST()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
