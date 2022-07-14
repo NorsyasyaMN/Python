@@ -6,17 +6,44 @@ import sys # Library for INT_M5AX
 
 # remove later just for troubleshooting purposes
 
+#Implementing Disjoint Set data structure and its functions
+class DisjointSet:
+    def __init__(self, vertices):
+        self.vertices = vertices
+        self.parent = {}
+        for v in vertices:
+            self.parent[v] = v
+        self.rank = dict.fromkeys(vertices, 0)
+    
+    def find(self, item):
+        if self.parent[item] == item:
+            return item
+        else:
+            return self.find(self.parent[item])
+    
+    def union(self, x, y):
+        xroot = self.find(x)
+        yroot = self.find(y)
+        if self.rank[xroot] < self.rank[yroot]:
+            self.parent[xroot] = yroot
+        elif self.rank[xroot] > self.rank[yroot]:
+            self.parent[yroot] = xroot
+        else:
+            self.parent[yroot] = xroot
+            self.rank[xroot] += 1
+
 # Class to represent graph and all the functions
 class Graph:
     """ Constructor """
 
-    def __init__(self, vertex):
+    def __init__(self):
 
-        self.V = vertex
         self.exist = False
         self.edgeList = []  # List to store all edges in the graph
         self.Node = ["SE", "TO", "HA", "DU", "CA"]  # Store all vertices in a list
         self.adjList = {}  # Dictionary to represent adjacency list
+        self.MST = []
+        self.tree = []
 
         for node in self.Node:
             self.adjList[node] = {}  # Create dictionary for each vertex
@@ -37,9 +64,10 @@ class Graph:
 
     # Function to add edge
     def add_edge(self, src, destination, distance):
-
         self.adjList[src][destination] = distance
-        self.adjList[destination][src] = distance
+
+    def addEdge(self, s, d, w):
+        self.tree.append([s, d, w])
 
     # Function to add edge manually by user
     def add_edge_manual(self):
@@ -85,6 +113,7 @@ class Graph:
         weight = self.edge_weight(src, dest)
 
         self.add_edge(src, dest, weight)
+        self.addEdge(src, dest, weight)
         print("Edge", src, "to", dest, "with distance", weight, "is added into the graph!\n2")
 
     # Function to add random edge
@@ -112,6 +141,7 @@ class Graph:
         weight = self.edge_weight(source, dest)
 
         self.add_edge(source, dest, weight)  # Add to adjacency list
+        self.addEdge(source, dest, weight)
         # Print result
         print("Edge", source, "to", dest, "with distance", weight, "is added into the graph!\n")
 
@@ -205,12 +235,19 @@ class Graph:
 
     # Print adjacency list of graph
     def printGraph(self):
-        edge = []
         for node in self.adjList.keys():
             print(node, "->", self.adjList[node])
         print()
-        print(self.adjList["SE"].items())
-        print(len(self.adjList))
+
+    # Print solution Minimum Spanning Tree
+    def printSolution(self,s,d,w):
+        len = 0
+        print("Minimum Spanning Tree of the existing graph: ")
+        for s, d, w in self.MST:
+            print("%s -> %s: %s" % (s, d, w))
+        for s, d, w in self.MST:
+            len += w
+        print("Total weight: ", len)
     
     def is_path(t, path):
         if t.head != path[0]:
@@ -218,18 +255,6 @@ class Graph:
         if t.head == path[0] and len(path) == 1:
             return True
         return any(ispath(i, path[1:]) for i in t.children)
-    
-    def convert(self, V):
- 
-        # Initialize a matrix
-        matrix = [[0 for j in range(V)]
-                    for i in range(V)]
-        
-        for i in self.adjList:
-            for j in self.adjList[i]:
-                matrix[i][j] = 1
-        
-        return matrix
 
     """-----------------Function 1: Strongly connectivity--------------"""
 
@@ -297,6 +322,10 @@ class Graph:
             elif tracker[self.Node.index(neighbour)]:
                 path.append(neighbour)
                 return True
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a128d19482ce975d5dd5eb96b546833d643838c9
 
         # pop the node after the end of recursion
         tracker[self.Node.index(node)] = False
@@ -443,6 +472,7 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
+<<<<<<< HEAD
     
 def PrimMST(self):
         # Get the number of vertices in graph
@@ -500,6 +530,26 @@ def PrimMST(self):
                     minHeap.decreaseKey(v, key[v])
  
         printArr(parent, V)
+=======
+        
+    def kruskalAlgo(self):
+        V = 5 # Number of vertices
+        i, e = 0, 0
+        ds = DisjointSet(self.Node)
+        self.tree = sorted(self.tree, key=lambda item: item[2])
+        while e < V - 1:
+            s, d, w = self.tree[i]
+            i += 1
+            x = ds.find(s)
+            y = ds.find(d)
+            if x != y:
+                e += 1
+                self.MST.append([s,d,w])
+                ds.union(x,y)
+        self.printSolution(s,d,w)
+    
+
+>>>>>>> a128d19482ce975d5dd5eb96b546833d643838c9
 
 # Function to clear screen
 def cls_screen():
@@ -535,7 +585,7 @@ def print_menu():
     print("=  6. Add an Edge                                       =")
     print("=  7. Remove an Edge                                    =")
     print("=  8. View Graph Adjacency List                         =")
-    print("=  9. Exit/Quit                                        =")
+    print("=  9. Exit/Quit                                         =")
     print("=========================================================")
 
 
@@ -555,7 +605,13 @@ def AWAIT_TRIGGER():
 
 def main():
 
-    g = Graph(5)  # Create a graph
+    g = Graph()  # Create a graph
+    g.addEdge("SE", "TO", 1156)
+    g.addEdge("SE", "HA", 10915)
+    g.addEdge("HA", "CA", 7624)
+    g.addEdge("DU", "CA", 6072)
+    g.addEdge("DU", "TO", 7933)
+
     print()
     city_name()
     print()
@@ -588,7 +644,7 @@ def main():
                 cls_screen()
                 break
             elif choice == 4:
-               # g.PrimMST()
+                g.kruskalAlgo()
                 AWAIT_TRIGGER()
                 cls_screen()
                 break
