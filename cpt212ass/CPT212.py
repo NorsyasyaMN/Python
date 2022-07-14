@@ -215,18 +215,6 @@ class Graph:
         if t.head == path[0] and len(path) == 1:
             return True
         return any(ispath(i, path[1:]) for i in t.children)
-    
-    def convert(self, V):
- 
-        # Initialize a matrix
-        matrix = [[0 for j in range(V)]
-                    for i in range(V)]
-        
-        for i in self.adjList:
-            for j in self.adjList[i]:
-                matrix[i][j] = 1
-        
-        return matrix
 
     """-----------------Function 1: Strongly connectivity--------------"""
 
