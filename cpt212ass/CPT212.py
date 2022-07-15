@@ -2,9 +2,7 @@ from pydoc import ispath
 import random as rd
 from os import system, name
 from turtle import distance
-import sys # Library for INT_M5AX
-
-# remove later just for troubleshooting purposes
+import sys # Library for INT_M5A
 
 #Implementing Disjoint Set data structure and its functions
 class DisjointSet:
