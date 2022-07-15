@@ -8,6 +8,7 @@ import sys # Library for INT_M5AX
 
 #Implementing Disjoint Set data structure and its functions
 class DisjointSet:
+    # Constructor
     def __init__(self, vertices):
         self.vertices = vertices
         self.parent = {}
@@ -15,12 +16,14 @@ class DisjointSet:
             self.parent[v] = v
         self.rank = dict.fromkeys(vertices, 0)
     
+    # Recursive function to find the vertex
     def find(self, item):
         if self.parent[item] == item:
             return item
         else:
             return self.find(self.parent[item])
     
+    # Function to determine the minimum weight and detect cycle
     def union(self, x, y):
         xroot = self.find(x)
         yroot = self.find(y)
@@ -907,13 +910,14 @@ class Graph:
                     prev = self.dijkstra(src, dest)
 
     """-----------------Function 4: Finding Minimum Spanning Tree--------------"""
-        
+    
+    # Find the Minimum Spanning Tree
     def kruskalAlgo(self):
         V = 5 # Number of vertices
         i, e = 0, 0
-        ds = DisjointSet(self.Node)
+        ds = DisjointSet(self.Node) # Disjointset class
         self.tree = sorted(self.tree, key=lambda item: item[2])
-        while e < V - 1:
+        while e < V - 1: # Loop until all vertices are visited
             s, d, w = self.tree[i]
             i += 1
             x = ds.find(s)
